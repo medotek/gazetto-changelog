@@ -1,0 +1,59 @@
+#app {
+  max-width: 1280px;
+  margin: 2rem;
+  font-weight: normal;
+  border: 1px solid #d2d2d2;
+  border-radius: 0.475rem;
+  background: #ffffff;
+
+  .component {
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    .tab-content {
+      background: #f9fbfc;
+    }
+  }
+}
+
+body {
+  background: #f9fbfc;
+}
+
+:root {
+  --gazette-primary: #268995;
+  --gazette-secondary: #f2ce68;
+  --gazette-text: #252525;
+  --gazette-gray: #f1edea;
+  --gazette-gray-darker: #e1e4e9;
+  --gazette-white: white;
+}
+
+$theme-colors: (
+        "primary":#42b883
+);
+
+$nav-link-color: var(--gazette-text);
+$nav-link-hover-color: var(--gazette-primary);
+$nav-tabs-border-color: var(--gazette-gray-darker);
+$nav-tabs-border-width: 3px;
+$nav-tabs-link-active-bg: black;
+$nav-tabs-link-active-bg: transparent;
+$nav-tabs-link-active-color: var(--gazette-primary);
+$nav-tabs-link-hover-border-color: transparent;
+
+// Overriding bootstrap style
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// Custom override style
+.nav-tabs {
+  .nav-link {
+    border-style: none;
+  }
+
+  .nav-link.active, .nav-link:hover {
+    border-bottom: 3px solid var(--gazette-primary);
+  }
+}
+
+
