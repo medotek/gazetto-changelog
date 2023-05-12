@@ -1,11 +1,22 @@
 <template>
-  <div class="tab-content">
-      <p>test</p>
-  </div>
+  <ul>
+    <li v-for="log in this.getLogs">{{ log.title }}</li>
+  </ul>
 </template>
 
-<script>
+<script lang="ts">
+import {useChangelogStore} from "@/stores/changelog";
+import {computed} from "vue";
+import {mapState} from "pinia";
+import {LogType} from "@/types";
+
 export default {
-  name: "TwitterTab"
+  name: "TwitterTab",
+  computed: {
+    ...mapState(useChangelogStore, ['currentVersionId', 'logs']),
+    getLogs() {
+      return this.logs.find((item: { type: LogType; }) => item.type === LogType.Twitter)?.logs
+    }
+  }
 }
 </script>

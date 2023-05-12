@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import {computed, onMounted} from "vue";
 import TabComponent from "@/components/TabComponent.vue";
-import {useVersionStore} from "@/stores/versions";
+import {watch} from 'vue'
+import {useChangelogStore} from "@/stores/changelog";
 
-const store = useVersionStore();
+const store = useChangelogStore();
 
 const getVersions = computed(() => {
   return store.getVersions;
@@ -13,11 +14,24 @@ const versions = computed(() => {
   return store.versions;
 });
 
-onMounted(() => {
-  store.fetchVersions();
+onMounted(async () => {
+  await store.fetchVersions();
+  // Setting the first version by default :
+  if (store.versions?.length && store.versions[0]?.id) {
+    store.dispatchCurrentVersion(store.versions[0].id)
+    // Prefetch all logs
+    await store.fetchLogs();
+  }
 });
 
-console.log(versions)
+// Refresh logs by version
+watch(
+    () => store.currentVersionId,
+    async () => {
+      console.log('Current version updated')
+      await store.fetchLogs();
+    },
+)
 </script>
 
 <template>

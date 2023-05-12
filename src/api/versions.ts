@@ -1,4 +1,5 @@
 import axios from "axios";
+import type {Version} from "@/types";
 
 const defaultHeaders = {
     'Accept': 'application/json',
@@ -21,7 +22,7 @@ export async function getAllVersions(): Promise<Version[] | []> {
  * @param {number} id
  */
 export async function getVersionById(id: number): Promise<Version | null> {
-    const {data} =  await axios.get(`${import.meta.env.VITE_API_GUDA_PUBLIC}/versions/${id}`, {
+    const {data} = await axios.get(`${import.meta.env.VITE_API_GUDA_PUBLIC}/versions/${id}`, {
         headers: defaultHeaders
     });
 

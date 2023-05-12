@@ -1,20 +1,34 @@
 <template>
-    <select name="version-dropdown"
-            id="version-dropdown"
-            class="form-select form-select-md"
-            aria-label="Default select example">
-      <option v-for="(version, index) in versions" :value=version.id :selected="!index">{{version.number}}</option>
-    </select>
+  <select name="version-dropdown"
+          id="version-dropdown"
+          class="form-select form-select-md"
+          aria-label="Version des logs"
+          @change="updateCurrentVersion"
+  >
+    <option v-for="(version, index) in versions" :value=version.id :selected="!index">{{ version.number }}</option>
+  </select>
 </template>
 
 <script>
-import {mapState} from "pinia";
-import {useVersionStore} from "@/stores/versions";
+import {mapActions, mapState} from "pinia";
+import {useChangelogStore} from "@/stores/changelog";
 
 export default {
   name: "VersionDropdown",
   computed: {
-    ...mapState(useVersionStore, ['versions'])
+    ...mapState(useChangelogStore, ['versions', 'currentVersionId'])
+  },
+  methods: {
+    /** Get action from store */
+    ...mapActions(useChangelogStore, ['dispatchCurrentVersion']),
+    /**
+     * Update current version on change
+     *
+     * @param event
+     */
+    updateCurrentVersion(event) {
+      this.dispatchCurrentVersion(parseInt(event.target.value))
+    }
   }
 }
 </script>

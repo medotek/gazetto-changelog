@@ -1,8 +1,26 @@
-interface Version {
+export interface Version {
     id: number
     number: string
 }
 
-interface State {
-    versions: Version[]
+export interface Log {
+    id: number
+    title: string
+    description: string
+    version: Version
+    type: LogType;
+    url: string
+}
+
+export interface LogsByType {
+    type: LogType
+    logs: Log[]
+}
+
+export enum LogType {
+    Website = "website",
+    Hoyolab = "hoyolab",
+    YouTube = "youtube",
+    Discord = "discord",
+    Twitter = "twitter"
 }
