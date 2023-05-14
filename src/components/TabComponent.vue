@@ -11,7 +11,7 @@
     <b-tab class="tab" title="Hoyolab" :disabled="hasLogs(LogType.Hoyolab)">
       <HoyolabTabContent/>
     </b-tab>
-    <b-tab class="tab" title="Youtube" :disabled="hasLogs(LogType.Youtube)">
+    <b-tab class="tab" title="Youtube" :disabled="hasLogs(LogType.YouTube)">
       <YoutubeTabContent/>
     </b-tab>
   </b-tabs>
@@ -49,12 +49,7 @@ export default {
     hasLogs(type: LogType): Boolean {
       const logs = this.logs.find(log => log.type === type)
       if (this.logs.find(log => log.type === type)) {
-
-        if (logs?.logs?.length > 0) {
-          return false
-        }
-
-        return true;
+        return logs?.logs?.length <= 0;
       }
     }
   }
