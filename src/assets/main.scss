@@ -18,7 +18,7 @@ $nav-tabs-border-width: 3px;
 $nav-tabs-link-active-bg: black;
 $nav-tabs-link-active-bg: transparent;
 $nav-tabs-link-active-color: var(--gazette-primary);
-$nav-tabs-link-hover-border-color: transparent;
+$nav-tabs-link-hover-border-color: $nav-tabs-link-active-bg;
 
 // Overriding bootstrap style
 @import '../node_modules/bootstrap/scss/bootstrap';

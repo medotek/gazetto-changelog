@@ -1,6 +1,6 @@
 <template>
-  <ul class="log-wrapper">
-    <li class="log-group" v-for="data in getLogs">
+  <div class="log-wrapper">
+    <div class="log-group" v-for="data in getLogs">
       <div class="log-date">{{ data.date }}</div>
       <ul>
         <li class="log-item" v-for="log in data.logs">
@@ -12,8 +12,8 @@
           <div class="log-title" v-if="!log.kind && log.url"><a :href="log.url">{{ log.title }}</a></div>
         </li>
       </ul>
-    </li>
-  </ul>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -69,12 +69,11 @@ export default {
 
   .log-group {
     border-radius: 5px;
-    margin: 1rem 2rem 0.5rem 2rem;
+    margin: 1rem 2rem 0 2rem;
     padding: 0.25rem;
     list-style-type: none;
 
     .log-date {
-      //text-align: center;
       background: var(--gazette-gray);
       font-weight: bold;
       padding-left: 5px;
@@ -83,7 +82,7 @@ export default {
 
     ul {
       padding: 0.25rem;
-
+      margin: 0;
       > .log-item {
         display: flex;
         list-style-type: none;
