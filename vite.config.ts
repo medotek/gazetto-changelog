@@ -16,5 +16,23 @@ export default defineConfig({
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url))
         }
-    }
+    },
+    build: {
+        outDir: '../assets',
+        rollupOptions: {
+            output: {
+        assetFileNames: (assetInfo) => {
+            // @ts-ignore
+            let extType = assetInfo.name.split('.').at(1);
+            // @ts-ignore
+            if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
+                extType = 'img';
+            }
+            return `${extType}/[name][extname]`;
+        },
+        chunkFileNames: 'js/[name].js',
+        entryFileNames: 'js/[name].js',
+},
+},
+},
 })
