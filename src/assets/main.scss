@@ -34,3 +34,13 @@ $nav-tabs-link-hover-border-color: transparent;
     border-bottom: 3px solid var(--gazette-primary);
   }
 }
+
+.log-wrapper p {
+  margin: 0 !important;
+}
+
+@include media-breakpoint-down(sm) {
+  .log-item {
+    flex-direction: column;
+  }
+}

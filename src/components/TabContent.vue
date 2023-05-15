@@ -1,19 +1,17 @@
 <template>
   <ul class="log-wrapper">
-    <li class="log-item" v-for="(logs, date) in getLogs" :key="date">
-      <div>
-        <ul>
-          <li v-for="log in logs">{{log.description}}</li>
-        </ul>
-      </div>
-<!--      <div class="log-left">-->
-<!--        <div class="log-label">{{ log.isAnUpdate ? 'UPDATE' : 'NEW' }}</div>-->
-<!--      </div>-->
-<!--      <div class="log-right">-->
-<!--        <div class="log-kind"><strong>{{ log.kind }}</strong></div>-->
-<!--&lt;!&ndash;        <div class="log-description" v-html="marked.parse(log.description)"></div>&ndash;&gt;-->
-<!--        <div class="log-date">{{ log.createdAt }}</div>-->
-<!--      </div>-->
+    <li class="log-group" v-for="data in getLogs">
+      <div class="log-date">{{ data.date }}</div>
+      <ul>
+        <li class="log-item" v-for="log in data.logs">
+          <span :class="'log-label' + (log.isAnUpdate ? ' update' : '') ">[{{ log.isAnUpdate ? 'Mise à jour' : 'NEW' }}] <span v-if="log.kind">{{
+              log.kind
+            }}</span> : &nbsp;
+          </span>
+          <div class="log-description" v-if="log.kind" v-html="marked.parse(log.description)"></div>
+          <div class="log-title" v-if="!log.kind && log.url"><a :href="log.url">{{ log.title }}</a></div>
+        </li>
+      </ul>
     </li>
   </ul>
 </template>
@@ -30,8 +28,8 @@ export default {
   name: 'TabContent',
   props: ['logType'],
   computed: {
-    ...mapState(useChangelogStore, ['currentVersionId', 'logs']),
-    getLogs: function () : Log[][] | null {
+    ...mapState(useChangelogStore, ['logs']),
+    getLogs: function (): { date: string, logs: Log[] }[] | null {
       // @ts-ignore
       const logs = this.logs.find((item: { type: LogType }) => item.type === this.logType)?.logs;
       if (!logs || !logs.length) return null;
@@ -50,7 +48,10 @@ export default {
 
       logsIndexForDate.sort((a, b) => new Date(a).getDate() - new Date(b).getDate());
 
-      return logsIndexForDate.map((dateStr) => logsByDate[dateStr]);
+      return logsIndexForDate.map((dateStr) => ({
+        date: dateStr,
+        logs: logsByDate[dateStr]
+      }));
     },
     marked: function () {
       marked.use(gfmHeadingId())
@@ -64,35 +65,41 @@ export default {
 
 <style scoped lang="scss">
 .log-wrapper {
-  background: var(--gazette-gray);
   padding: 0;
 
-  > .log-item {
-    display: flex;
-    background: var(--gazette-white);
-    border: 1px solid var(--gazette-gray-darker);
+  .log-group {
     border-radius: 5px;
-    list-style-type: none;
-    margin: 0 2rem 0.5rem 2rem;
+    margin: 1rem 2rem 0.5rem 2rem;
     padding: 0.25rem;
+    list-style-type: none;
 
-    .log-left {
-      width: 5rem;
+    .log-date {
+      //text-align: center;
+      background: var(--gazette-gray);
+      font-weight: bold;
+      padding-left: 5px;
+      color: var(--gazette-primary);
+    }
 
-      .log-label {
-        background-color: var(--gazette-primary);
-        border-radius: 0.4rem;
-        color: white;
-        font-size: 10px;
-        margin: 0 auto;
-        padding: 3px 5px 3px 3px;
-        width: min-content;
+    ul {
+      padding: 0.25rem;
+
+      > .log-item {
+        display: flex;
+        list-style-type: none;
+        //margin: 0 2rem 0.5rem 2rem;
+        padding: 0.25rem;
+
+        .log-label {
+          color: red;
+          font-weight: bold;
+        }
+
+        .update {
+          color: green;
+        }
       }
     }
-
-    .log-right {
-    }
-
   }
 }
 </style>
