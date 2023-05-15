@@ -1,30 +1,24 @@
 <template>
-  <b-tabs class="tabs component" content-class="mt-3" justified v-if="currentVersionIsUpdated">
-    <b-tab active :disabled="hasLogs(LogType.Website)">
+  <b-tabs class="tabs" justified v-if="currentVersionIsUpdated">
+    <b-tab :active="!key" :disabled="hasLogs(type.toLowerCase())" v-for="(type, key) in LogType">
       <template #title>
-        <span class="tab-title"><strong>Site Internet</strong></span>
+        <span class="tab-title"
+          ><strong>{{ type.toLowerCase().charAt(0).toUpperCase() + type.slice(1) }}</strong></span
+        >
       </template>
-      <WebsiteTabContent/>
-    </b-tab>
-    <b-tab class="tab" title="Twitter" :disabled="hasLogs(LogType.Twitter)">
-    </b-tab>
-    <b-tab class="tab" title="Hoyolab" :disabled="hasLogs(LogType.Hoyolab)">
-      <HoyolabTabContent/>
-    </b-tab>
-    <b-tab class="tab" title="Youtube" :disabled="hasLogs(LogType.YouTube)">
-      <YoutubeTabContent/>
+      <TabContent :log-type="type.toLowerCase()" />
     </b-tab>
   </b-tabs>
 </template>
 
 <script lang="ts">
-import {useChangelogStore} from "@/stores/changelog";
-import {computed} from "vue";
-import {LogType} from "@/types";
-import {mapState} from "pinia";
+import { useChangelogStore } from '@/stores/changelog'
+import { computed } from 'vue'
+import { LogType } from '@/types'
+import { mapState } from 'pinia'
 
 export default {
-  name: "TabComponent",
+  name: 'TabComponent',
   setup() {
     const store = useChangelogStore()
 
@@ -42,14 +36,14 @@ export default {
       return LogType
     },
     ...mapState(useChangelogStore, {
-      logsByType: (state) => state.logs,
-    }),
+      logsByType: (state) => state.logs
+    })
   },
   methods: {
     hasLogs(type: LogType): Boolean {
-      const logs = this.logs.find(log => log.type === type)
-      if (this.logs.find(log => log.type === type)) {
-        return logs?.logs?.length <= 0;
+      const logs = this.logs.find((log) => log.type === type)
+      if (this.logs.find((log) => log.type === type)) {
+        return logs?.logs?.length <= 0
       }
     }
   }

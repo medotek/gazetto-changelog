@@ -7,3 +7,7 @@ interface ImportMetaEnv {
 interface ImportMeta {
     readonly env: ImportMetaEnv
 }
+
+declare module 'marked-mangle';
+
+declare module 'marked-gfm-heading-id';
