@@ -1,5 +1,19 @@
 # Gazette Changelog
 
+Ce projet vient récupérer les données publics exposées par un middleware du projet La Gazette de Teyvat.
+Et sera ensuite afficher sur le site via un plugin wordpress.
+
+Dépendances utilitées pour ce projet :
+- axios
+- bootstrap
+- bootstrap-vue-next (intégration bootstrap sur le framework)
+- marked (formattage en html de contenu)
+- marked-gfm-heading-id (plugin marked)
+- marked-mangle (plugin marked)
+
+Les logs sont alimentés par un bot discord (Gudadmin) qui permet d'administrer le contenu des changelog de la Gazette.
+_______________________________________________________________________
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
