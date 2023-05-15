@@ -1,13 +1,13 @@
 <template>
   <div class="tab-header component">
     <h3>Gazetto Changelog</h3>
-    <VersionDropdown/>
+    <VersionDropdown />
   </div>
 </template>
 
 <script>
 export default {
-  name: "HeaderComponent"
+  name: 'HeaderComponent'
 }
 </script>
 
@@ -15,6 +15,6 @@ export default {
 .tab-header {
   display: flex;
   justify-content: space-between;
-  padding: 2rem 0;
+  padding: 2rem;
 }
 </style>

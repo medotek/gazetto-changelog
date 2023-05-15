@@ -1,20 +1,20 @@
-import axios from "axios";
-import type {Version} from "@/types";
+import axios from 'axios'
+import type { Version } from '@/types'
 
 const defaultHeaders = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
+  Accept: 'application/json',
+  'Content-Type': 'application/json'
 }
 
 /**
  * Retrieve all genshin versions
  */
 export async function getAllVersions(): Promise<Version[] | []> {
-    const {data} = await axios.get(`${import.meta.env.VITE_API_GUDA_PUBLIC}/versions`, {
-        headers: defaultHeaders
-    });
+  const { data } = await axios.get(`${import.meta.env.VITE_API_GUDA_PUBLIC}/versions`, {
+    headers: defaultHeaders
+  })
 
-    return data ?? []
+  return data ?? []
 }
 
 /**
@@ -22,9 +22,9 @@ export async function getAllVersions(): Promise<Version[] | []> {
  * @param {number} id
  */
 export async function getVersionById(id: number): Promise<Version | null> {
-    const {data} = await axios.get(`${import.meta.env.VITE_API_GUDA_PUBLIC}/versions/${id}`, {
-        headers: defaultHeaders
-    });
+  const { data } = await axios.get(`${import.meta.env.VITE_API_GUDA_PUBLIC}/versions/${id}`, {
+    headers: defaultHeaders
+  })
 
-    return data ?? null
+  return data ?? null
 }
