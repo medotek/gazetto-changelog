@@ -28,10 +28,13 @@ export default defineConfig({
             if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
                 extType = 'img';
             }
+            if (extType === 'css')
+                return `${extType}/gchangelog[extname]`;
+
             return `${extType}/[name][extname]`;
         },
-        chunkFileNames: 'js/[name].js',
-        entryFileNames: 'js/[name].js',
+        chunkFileNames: 'js/gchangelog.js',
+        entryFileNames: 'js/gchangelog.js',
 },
 },
 },
