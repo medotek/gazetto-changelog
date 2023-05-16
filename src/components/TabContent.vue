@@ -9,7 +9,7 @@
             }}</span> : &nbsp;
           </span>
           <div class="log-description" v-if="log.kind" v-html="marked.parse(log.description.replace(/\n/g, '<br />'))"></div>
-          <div class="log-title" v-if="log.url"><a :href="log.url">{{ log.title }}</a></div>
+          <div class="log-title" v-if="log.title && !log.description"><a v-if="log.url" :href="log.url">{{ log.title }}</a><span v-if="!log.url">{{ log.title }}</span></div>
         </li>
       </ul>
     </div>
