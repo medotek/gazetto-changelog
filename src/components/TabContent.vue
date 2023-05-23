@@ -8,7 +8,7 @@
               log.kind
             }}</span> : &nbsp;
           </span>
-          <div class="log-description" v-if="log.kind" v-html="marked.parse(log.description.replace(/\n/g, '<br />'))"></div>
+          <div class="log-description" v-if="log.description" v-html="parseLogDescription(log.description)"></div>
           <div class="log-title" v-if="log.title && !log.description"><a v-if="log.url" :href="log.url">{{ log.title }}</a><span v-if="!log.url">{{ log.title }}</span></div>
         </li>
       </ul>
@@ -53,11 +53,15 @@ export default {
         logs: logsByDate[dateStr]
       }));
     },
-    marked: function () {
+  },
+  methods: {
+    parseLogDescription(description: string) {
       marked.use(gfmHeadingId())
       marked.use(mangle())
 
-      return marked
+      const pattern: RegExp = /<#([^>]+)>[^:]*:/gu;
+      description = description.replace(pattern, '').replace(/\n/g, '<br />')
+      return marked.parse(description)
     }
   }
 }
@@ -92,6 +96,10 @@ export default {
         .log-label {
           color: red;
           font-weight: bold;
+        }
+
+        .log-description {
+          padding-left: 0.5rem;
         }
 
         .update {
