@@ -96,6 +96,7 @@ export default {
         .log-label {
           color: red;
           font-weight: bold;
+          min-width: max-content;
         }
 
         .log-description {
