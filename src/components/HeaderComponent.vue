@@ -1,13 +1,19 @@
 <template>
   <div class="tab-header component">
-    <h3>Gazetto Changelog</h3>
+    <h3>Gazetto Changelog <span v-if="getCurrentVersion?.startAt">- version {{getCurrentVersion.number}} [{{ getCurrentVersion?.startAt.split('T')[0] }}]</span></h3>
     <VersionDropdown />
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import {mapState} from "pinia";
+import {useChangelogStore} from "@/stores/changelog";
+
 export default {
-  name: 'HeaderComponent'
+  name: 'HeaderComponent',
+  computed: {
+    ...mapState(useChangelogStore, ['getCurrentVersion'])
+  }
 }
 </script>
 

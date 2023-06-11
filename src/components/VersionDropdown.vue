@@ -12,7 +12,7 @@
   </select>
 </template>
 
-<script>
+<script lang="ts">
 import { mapActions, mapState } from 'pinia'
 import { useChangelogStore } from '@/stores/changelog'
 
@@ -29,7 +29,7 @@ export default {
      *
      * @param event
      */
-    updateCurrentVersion(event) {
+    updateCurrentVersion(event: any) {
       this.dispatchCurrentVersion(parseInt(event.target.value))
     }
   }

@@ -16,5 +16,26 @@ export default defineConfig({
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url))
         }
-    }
+    },
+    build: {
+        outDir: '../assets',
+        rollupOptions: {
+            output: {
+        assetFileNames: (assetInfo) => {
+            // @ts-ignore
+            let extType = assetInfo.name.split('.').at(1);
+            // @ts-ignore
+            if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
+                extType = 'img';
+            }
+            if (extType === 'css')
+                return `${extType}/gchangelog[extname]`;
+
+            return `${extType}/[name][extname]`;
+        },
+        chunkFileNames: 'js/gchangelog.js',
+        entryFileNames: 'js/gchangelog.js',
+},
+},
+},
 })

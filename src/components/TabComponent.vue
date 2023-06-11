@@ -40,10 +40,10 @@ export default {
     })
   },
   methods: {
-    hasLogs(type: LogType): Boolean {
+    hasLogs(type: string): any {
       const logs = this.logs.find((log) => log.type === type)
       if (this.logs.find((log) => log.type === type)) {
-        return logs?.logs?.length <= 0
+        return logs ? Boolean(logs.logs.length <= 0) : false
       }
     }
   }

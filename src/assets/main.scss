@@ -19,7 +19,6 @@ $nav-tabs-link-active-bg: black;
 $nav-tabs-link-active-bg: transparent;
 $nav-tabs-link-active-color: var(--gazette-primary);
 $nav-tabs-link-hover-border-color: $nav-tabs-link-active-bg;
-
 // Overriding bootstrap style
 @import '../node_modules/bootstrap/scss/bootstrap';
 
@@ -40,7 +39,23 @@ $nav-tabs-link-hover-border-color: $nav-tabs-link-active-bg;
 }
 
 @include media-breakpoint-down(sm) {
-  .log-item {
-    flex-direction: column;
+  .log-wrapper {
+    .log-group {
+      margin: 1rem 0 0 0 !important;
+    }
+    ul {
+      > .log-item {
+
+        flex-direction: column;
+      }
+    }
+  }
+
+  .nav {
+    --bs-nav-link-padding-y: inherit;
+  }
+
+  .tab-header {
+    padding: 2rem 0.5rem !important;
   }
 }

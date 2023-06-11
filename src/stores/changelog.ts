@@ -14,8 +14,10 @@ export const useChangelogStore = defineStore('changelog', {
     getVersions(state) {
       return state.versions
     },
-    getCurrentVersion(state) {
-      return state.currentVersionId
+    getCurrentVersion(state): Version|null {
+      if (!this.versions || !this.versions.length) return null
+      // @ts-ignore
+      return this.versions.find(version => version.id === state.currentVersionId)
     },
     getLogsByType(state) {
       return state.logs

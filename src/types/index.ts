@@ -1,6 +1,8 @@
 export interface Version {
   id: number
   number: string
+  startAt: string
+  endAt: string
 }
 
 export interface Log {
