@@ -9,7 +9,7 @@
             }}</span> : &nbsp;
           </span>
           <div class="log-description" v-if="log.kind" v-html="parseLogDescription(log.description)"></div>
-          <div class="log-title" v-if="!log.kind && log.url"><a v-if="log.url" :href="log.url">{{ log.title }}</a><span v-if="!log.url">{{ log.title }}</span></div>
+          <div class="log-title" v-if="log.url"><a v-if="log.url" :href="log.url">{{ log.title }}</a><span v-if="!log.url">{{ log.title }}</span></div>
         </li>
       </ul>
     </div>
