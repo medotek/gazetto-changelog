@@ -8,54 +8,57 @@
 }
 
 $theme-colors: (
-  'primary': #42b883
+        'primary': #42b883
 );
 
-$nav-link-color: var(--gazette-text);
-$nav-link-hover-color: var(--gazette-primary);
-$nav-tabs-border-color: var(--gazette-gray-darker);
-$nav-tabs-border-width: 3px;
-$nav-tabs-link-active-bg: black;
-$nav-tabs-link-active-bg: transparent;
-$nav-tabs-link-active-color: var(--gazette-primary);
-$nav-tabs-link-hover-border-color: $nav-tabs-link-active-bg;
-// Overriding bootstrap style
-@import '../node_modules/bootstrap/scss/bootstrap';
+.app {
+  $nav-link-color: var(--gazette-text);
+  $nav-link-hover-color: var(--gazette-primary);
+  $nav-tabs-border-color: var(--gazette-gray-darker);
+  $nav-tabs-border-width: 3px;
+  $nav-tabs-link-active-bg: black;
+  $nav-tabs-link-active-bg: transparent;
+  $nav-tabs-link-active-color: var(--gazette-primary);
+  $nav-tabs-link-hover-border-color: $nav-tabs-link-active-bg;
+  // Overriding bootstrap style
+  @import '../node_modules/bootstrap/scss/bootstrap';
 
-// Custom override style
-.nav-tabs {
-  .nav-link {
-    border-style: none;
-  }
-
-  .nav-link.active,
-  .nav-link:hover {
-    border-bottom: 3px solid var(--gazette-primary);
-  }
-}
-
-.log-wrapper p {
-  margin: 0 !important;
-}
-
-@include media-breakpoint-down(sm) {
-  .log-wrapper {
-    .log-group {
-      margin: 1rem 0 0 0 !important;
+  // Custom override style
+  .nav-tabs {
+    .nav-link {
+      border-style: none;
     }
-    ul {
-      > .log-item {
 
-        flex-direction: column;
+    .nav-link.active,
+    .nav-link:hover {
+      border-bottom: 3px solid var(--gazette-primary);
+    }
+  }
+
+  .log-wrapper p {
+    margin: 0 !important;
+  }
+
+  @include media-breakpoint-down(sm) {
+    .log-wrapper {
+      .log-group {
+        margin: 1rem 0 0 0 !important;
+      }
+
+      ul {
+        > .log-item {
+
+          flex-direction: column;
+        }
       }
     }
-  }
 
-  .nav {
-    --bs-nav-link-padding-y: inherit;
-  }
+    .nav {
+      --bs-nav-link-padding-y: inherit;
+    }
 
-  .tab-header {
-    padding: 2rem 0.5rem !important;
+    .tab-header {
+      padding: 2rem 0.5rem !important;
+    }
   }
 }

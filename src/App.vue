@@ -35,7 +35,7 @@ watch(
 </script>
 
 <template>
-  <div>
+  <div class="app">
     <HeaderComponent />
     <TabComponent />
   </div>
