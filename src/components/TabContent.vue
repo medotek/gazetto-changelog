@@ -56,6 +56,7 @@ export default {
   },
   methods: {
     parseLogDescription(description: string) {
+      if (!description) return;
       marked.use(gfmHeadingId())
       marked.use(mangle())
 
